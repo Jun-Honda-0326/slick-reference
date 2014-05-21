@@ -356,6 +356,8 @@ TablesA
 
 ## UNION, UNION ALL: union, unionAll
 
+TODO
+
 ## サブクエリ: in, exists
 
 ```scala
