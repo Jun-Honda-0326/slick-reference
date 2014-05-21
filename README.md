@@ -133,7 +133,7 @@ Users.filter(_.id between (from.bind, to.bind))
 
 ### like
 
-前方一致と後方一致には、startsWith、endsWithという便利メソッドがあります。
+前方一致と後方一致には、`startsWith`、`endsWith`という便利メソッドがあります。
 
 ```scala
 // select * from USERS x1 where x1.NAME like 'Biz%' escape '^'
@@ -143,7 +143,7 @@ Users.filter(_.name startsWith "Biz")
 Users.filter(_.name endsWith "Biz")
 ```
 
-あいまい検索には便利メソッドがなく、likeを使います。
+あいまい検索には便利メソッドがなく、`like`を使います。
 
 ```scala
 // select * from USERS x1 where x1.NAME like ?
@@ -186,7 +186,7 @@ Users.map(t => t.id -> t.name)
 Users.map(t => (t.id, t.name, t.companyId))
 ```
 
-上記のクエリをたとえばlistで結果を取得すると、
+上記のクエリをたとえば`list`で結果を取得すると、
 
 * 1件の場合      ⇒L ist[String]のように該当の型
 * 2件以上の場合  ⇒ List[(Long, String)]のようにタプル
@@ -195,7 +195,7 @@ Users.map(t => (t.id, t.name, t.companyId))
 
 ### ケースクラスにマッピング
 
-<>を使えば、mapで絞り込んだ項目を別のケースクラスにマッピングして取得することができます。
+`<>`を使えば、`map`で絞り込んだ項目を別のケースクラスにマッピングして取得することができます。
 
 ```scala
 case class Test(id: Long, name: String)
@@ -207,8 +207,7 @@ val res: List[Test] = Users.map { t =>
 
 ### Optionカラムの取得方法
 
-NULL可のカラムは、デフォルトではOptionで取得することになりますが、
-直接値を取得したり、NULLのときのデフォルト値を設定することで、StringやIntなどの型で取得することができます。
+`NULL`可のカラムは、デフォルトでは`Option`で取得することになりますが、直接値を取得したり、`NULL`のときのデフォルト値を設定することで、`String`や`Int`などの型で取得することができます。
 
 ```scala
 // ↓どちらも発行するSQLは、select x1.PRICE from PRODUCTS x1
@@ -220,7 +219,7 @@ Products.map(_.price.get)
 Products.map(_.price.getOrElse(0))
 ```
 
-IFNULL関数はメソッドが用意されています。
+`IFNULL`関数はメソッドが用意されています。
 
 ```scala
 // select IFNULL(x1.PRICE, 0), count(1) from PRODUCTS x1 group by x1.PRICE
@@ -233,14 +232,14 @@ Products
 
 ## ソート: sortBy
 
-sortByでカラムに指定できるもの
+`sortBy`でカラムに指定できるもの
 
 メソッド            |説明
 --------------------|----------------------
-asc                 |昇順。ascをつける
-desc または reverse |降順。descをつける
-nullsFirst          |NULLは最初。nulls firstをつける
-nullsLast           |NULLは最後。nulls lastをつける
+asc                 |昇順。`asc`をつける
+desc または reverse |降順。`desc`をつける
+nullsFirst          |`NULL`は最初。`nulls first`をつける
+nullsLast           |`NULL`は最後。`nulls last`をつける
 
 ```scala
 // select * from USERS x1 order by x1.ID
@@ -266,8 +265,7 @@ Users.sortBy(_.companyId.nullsFirst)
 Users.drop(30).take(30)
 ```
 
-dropとtakeは呼び出す順番に注意してください。
-もし、take(30).drop(30)のように記述した場合、「30件取得して30件捨てる」と解釈されるので、where falseとSQLが発行されます。
+`drop`と`take`は呼び出す順番に注意してください。もし、`take(30).drop(30)`のように記述した場合、「30件取得して30件捨てる」と解釈されるので、`where false`とSQLが発行されます。
 
 ## グルーピング: groupBy
 
@@ -333,7 +331,7 @@ Users
   }
 ```
 
-NULLの可能性があるカラムは「?」にすることでOptionで取得します。
+`NULL`の可能性があるカラムは`?`にすることで`Option`で取得します。
 
 ### 複数テーブルを結合
 
