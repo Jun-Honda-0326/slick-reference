@@ -1,6 +1,9 @@
 Slickチートシート
 ========
 
+* サンプルコードはわかりやすくするため戻り値の型を明示的に書いている部分があります
+* SQLの実行例は実際にSlickから発行されるSQLとは異なる場合があります
+
 ## CRUDの実行方法
 
 ### 取得
@@ -50,7 +53,6 @@ val res3: Int = Users insert SubUsers.filter(_.name is name.bind)
 ------------|-------------
 update      |クエリに該当するレコードを更新する
 
-例
 ```scala
 val res1: Int = Users.filter(_.id is id.bind).update(UsersRow(1, "なまえ変更"))
 
