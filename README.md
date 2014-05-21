@@ -188,8 +188,8 @@ Users.map(t => (t.id, t.name, t.companyId))
 
 上記のクエリをたとえば`list`で結果を取得すると、
 
-* 1件の場合      ⇒L ist[String]のように該当の型
-* 2件以上の場合  ⇒ List[(Long, String)]のようにタプル
+* 1件の場合      ⇒ `List[String]`のように該当の型
+* 2件以上の場合  ⇒ `List[(Long, String)]`のようにタプル
 
 で取得できます。
 
