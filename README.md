@@ -7,14 +7,15 @@ Slickチートシート
 
 よく使うメソッド
 
-|メソッド|説明|h
-|first|1件取得する。取得できない場合はNoSuchElementExceptionをスロー|
-|firstOption|1件取得する。取得できない場合はNoneを返す|
-|list|結果をListで取得する|
-|buildColl|結果を指定した型で取得する|
-|toMap|結果をMapで取得する。取得項目（mapメソッド）でタプル2（key-value形式）になっている必要がある|
-|execute|クエリを実行する。結果は無視されるので、戻り値はUnit|
-|foreach|クエリを実行し、結果を1件ずつ引数に受け取るコールバック関数を実行する|
+メソッド    |説明
+------------|-------------
+first       |1件取得する。取得できない場合はNoSuchElementExceptionをスロー
+firstOption |1件取得する。取得できない場合はNoneを返す
+list        |結果をListで取得する
+buildColl   |結果を指定した型で取得する
+toMap       |結果をMapで取得する。取得項目（mapメソッド）でタプル2（key-value形式）になっている必要がある
+execute     |クエリを実行する。結果は無視されるので、戻り値はUnit
+foreach     |クエリを実行し、結果を1件ずつ引数に受け取るコールバック関数を実行する
 
 例（分かり易くするためにあえて戻り値を書いてます）
 
@@ -29,9 +30,10 @@ Users foreach println
 
 ### 登録
 
-|メソッド|説明|h
-|insert もしくは +=|1件登録する。AutoIncのカラムは無視する|
-|insertAll もしくは ++=|複数件登録する。AutoIncのカラムは無視する|
+メソッド              |説明
+----------------------|-------------
+insert もしくは +=    |1件登録する。AutoIncのカラムは無視する
+insertAll もしくは ++=|複数件登録する。AutoIncのカラムは無視する
 
 例
 ```scala
@@ -47,8 +49,9 @@ val res3: Int = Users insert SubUsers.filter(_.name is name.bind)
 
 ### 更新
 
-|メソッド|説明|h
-|update|クエリに該当するレコードを更新する|
+メソッド    |説明
+------------|-------------
+update      |クエリに該当するレコードを更新する
 
 例
 ```scala
@@ -60,8 +63,9 @@ val res2: Int = Users.map(t => t.name -> t.updDate).update("なまえ変更" -> 
 
 ### 削除
 
-|メソッド|説明|h
-|delete|クエリに該当するレコードを削除する|
+メソッド    |説明
+------------|-------------
+delete      |クエリに該当するレコードを削除する
 
 例
 ```scala
@@ -234,11 +238,12 @@ Products
 
 sortByでカラムに指定できるもの
 
-|メソッド|説明|h
-|asc|昇順。ascをつける|
-|desc または reverse|降順。descをつける|
-|nullsFirst|NULLは最初。nulls firstをつける|
-|nullsLast|NULLは最後。nulls lastをつける|
+メソッド            |説明
+--------------------|----------------------
+asc                 |昇順。ascをつける
+desc または reverse |降順。descをつける
+nullsFirst          |NULLは最初。nulls firstをつける
+nullsLast           |NULLは最後。nulls lastをつける
 
 ```scala
 // select * from USERS x1 order by x1.ID
