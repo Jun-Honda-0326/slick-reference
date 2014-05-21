@@ -17,8 +17,6 @@ toMap       |結果をMapで取得する。取得項目（mapメソッド）で�
 execute     |クエリを実行する。結果は無視されるので、戻り値はUnit
 foreach     |クエリを実行し、結果を1件ずつ引数に受け取るコールバック関数を実行する
 
-例（分かり易くするためにあえて戻り値を書いてます）
-
 ```scala
 val res1: UsersRow = Users.filter(_.id is id.bind).first
 val res2: Option[UsersRow] = Users.filter(_.id is id.bind).firstOption
@@ -35,7 +33,6 @@ Users foreach println
 insert もしくは +=    |1件登録する。AutoIncのカラムは無視する
 insertAll もしくは ++=|複数件登録する。AutoIncのカラムは無視する
 
-例
 ```scala
 val res1: Int = Users insert UsersRow(0, "なまえ")
 val res2: Option[Int] = Users insertAll (
@@ -67,7 +64,6 @@ val res2: Int = Users.map(t => t.name -> t.updDate).update("なまえ変更" -> 
 ------------|-------------
 delete      |クエリに該当するレコードを削除する
 
-例
 ```scala
 val res1: Int = Users.filter(_.id is id.bind).delete
 ```
