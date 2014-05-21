@@ -9,12 +9,12 @@ Slickチートシート
 
 メソッド    |説明
 ------------|-------------
-first       |1件取得する。取得できない場合はNoSuchElementExceptionをスロー
-firstOption |1件取得する。取得できない場合はNoneを返す
-list        |結果をListで取得する
+first       |1件取得する。取得できない場合は`NoSuchElementException`をスロー
+firstOption |1件取得する。取得できない場合は`None`を返す
+list        |結果を`List`で取得する
 buildColl   |結果を指定した型で取得する
-toMap       |結果をMapで取得する。取得項目（mapメソッド）でタプル2（key-value形式）になっている必要がある
-execute     |クエリを実行する。結果は無視されるので、戻り値はUnit
+toMap       |結果をMapで取得する。取得項目（`map`メソッド）でタプル2（key-value形式）になっている必要がある
+execute     |クエリを実行する。結果は無視されるので、戻り値は`Unit`
 foreach     |クエリを実行し、結果を1件ずつ引数に受け取るコールバック関数を実行する
 
 ```scala
@@ -142,7 +142,6 @@ Users.filter(_.name endsWith "Biz")
 ```
 
 あいまい検索には便利メソッドがなく、likeを使います。
-　⇒TODO containsであいまい検索できるようにします
 
 ```scala
 // select * from USERS x1 where x1.NAME like ?
