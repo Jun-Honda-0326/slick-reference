@@ -23,8 +23,8 @@ foreach     |クエリを実行し、結果を1件ずつ引数に受け取るコ
 ```scala
 val res1: UsersRow = Users.filter(_.id is id.bind).first
 val res2: Option[UsersRow] = Users.filter(_.id is id.bind).firstOption
-val res3: List[UsersRow] = Users.list
-val res4: Seq[UsersRow] = Users.buildColl[Seq]
+val res3: Seq[UsersRow] = Users.list
+val res4: MyList[UsersRow] = Users.buildColl[MyList]
 val res5: Map[Long, UsersRow] = Users.map(t => t.id -> t).toMap
 Users foreach println
 ```
@@ -164,8 +164,29 @@ Users.filter(t => (t.name is name.bind) && (t.companyId is companyId.bind))
 Users.filter(t => (t.name is name.bind) || (t.companyId is companyId.bind))
 ```
 
-TODO toUpperCaseとかabsとか、取得時の便利メソッド
+### toUpperCase、toLowerCase
 
+```scala
+// select * from USERS x1 where {fn lcase(x1.NAME)} = ?
+Users.filter(_.name.toLowerCase is name.bind)
+```
+
+### ltrim、rtrim、trim
+
+```scala
+// select * from USERS x1 where {fn ltrim(x1.NAME)} = ?
+Users.filter(_.name.ltrim is name.bind)
+
+// select * from "USERS" x2 where {fn ltrim({fn rtrim(x1."NAME")})} = ?
+Users.filter(_.name.trim is name.bind)
+```
+
+### abs、ceil、floor、sign、toDegrees、toRadians
+
+```scala
+// select * from USERS x1 where {fn abs(x1.STATURE)} = ?
+Users.filter(_.stature.abs is stature.bind)
+```
 
 ## 取得項目: map
 
@@ -356,7 +377,14 @@ TablesA
 
 ## UNION, UNION ALL: union, unionAll
 
-TODO
+```scala
+// select x1.x2, x1.x3 from (
+//   select x4.ID as x2, x4.NAME as x3 from USERS x4
+//   union
+//   select x5.ID as x2, x5.NAME as x3 from COMPANIES x5
+// ) x1
+Users.map(t => t.id -> t.name).union(Employees.map(t => t.id -> t.name))
+```
 
 ## サブクエリ: in, exists
 
